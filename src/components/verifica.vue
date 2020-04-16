@@ -29,7 +29,7 @@ export default {
   methods: {
     verifica () {
       var vm = this
-      axios.get(`http://localhost:3000/usuario/${vm.email}`)
+      axios.get(`https://tap-api-tads.herokuapp.com/usuario/${vm.email}`)
         .then(function (response) {
           vm.msg = response.data.mensagem
         })

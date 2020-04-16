@@ -33,7 +33,7 @@ export default {
   methods: {
     adiciona () {
       var vm = this
-      axios.post('http://localhost:3000/usuario', {
+      axios.post('https://tap-api-tads.herokuapp.com/usuario', {
         email: vm.email,
         senha: vm.senha
       })

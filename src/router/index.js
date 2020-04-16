@@ -1,3 +1,5 @@
+/* eslint-disable eol-last */
+/* eslint-disable indent */
 import Vue from 'vue'
 import Router from 'vue-router'
 import adm from '@/components/adm'
