@@ -1,3 +1,4 @@
+/* eslint-disable curly */
 <template>
   <div>
     <div class="container">
@@ -14,6 +15,7 @@
             <input type="text" class="form-control" aria-label="Default"  v-model="senha" aria-describedby="inputGroup-sizing-default">
             <button type="button" class="btn btn-success" @click="adiciona()"
              aria-label="Default" aria-describedby="inputGroup-sizing-default">Adiciona</button>
+            <div class="col-md-12" style="margin-top:20px;">{{  msg  }}</div>
           </div>
         </div>
       </div>
@@ -27,7 +29,8 @@ export default {
   data () {
     return {
       email: undefined,
-      senha: undefined
+      senha: undefined,
+      msg: undefined
     }
   },
   methods: {
@@ -38,6 +41,12 @@ export default {
         senha: vm.senha
       })
         .then(function (response) {
+          // eslint-disable-next-line curly
+          if (response.data.status === 200)
+            vm.msg = 'Cadastrado!'
+          // eslint-disable-next-line curly
+          else
+            vm.msg = 'Ops, tivemos um problema, tente novamente'
           console.log(response)
         })
         .catch(function (error) {
