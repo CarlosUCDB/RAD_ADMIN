@@ -40,10 +40,14 @@ export default {
       })
         .then(function (response) {
           if (response.status === 200) { localStorage.setItem('token', response.data) }
+          vm.mostraToken()
         })
         .catch(function (error) {
           console.log(error)
         })
+    },
+    mostraToken () {
+      console.log(localStorage.getItem('token'))
     }
   }
 }
