@@ -39,7 +39,7 @@ export default {
         senha: vm.senha
       })
         .then(function (response) {
-          console.log(response.data)
+          if (response.status === 200) { localStorage.setItem('token', response.data) }
         })
         .catch(function (error) {
           console.log(error)
