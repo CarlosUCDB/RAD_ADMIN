@@ -5,6 +5,7 @@ import Router from 'vue-router'
 import adm from '@/components/adm'
 import verifica from '@/components/verifica'
 import Login from '@/components/login'
+import bemVindo from '@/components/bem-vindo'
 Vue.use(Router)
 
 export default new Router({
@@ -21,6 +22,10 @@ export default new Router({
             path: '/login',
             name: 'login',
             component: Login
+        }, {
+            path: '/bemVindo',
+            name: 'Bem Vindo',
+            component: bemVindo
         }
     ]
 })

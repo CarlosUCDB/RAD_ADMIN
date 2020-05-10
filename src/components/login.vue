@@ -32,6 +32,7 @@
               aria-label="Default"
               aria-describedby="inputGroup-sizing-default"
             >Login</button>
+            <div class="col-md-12" v-show="usuarioInvalido">Usuario Inválido</div>
           </div>
         </div>
       </div>
@@ -46,23 +47,26 @@ export default {
   data() {
     return {
       email: undefined,
-      senha: undefined
+      senha: undefined,
+      usuarioInvalido: false
     };
   },
   methods: {
     adiciona() {
       var vm = this;
+      vm.usuarioInvalido = false;
       axios
-        .get("http://localhost:3000/validarToken", {
+        .get("https://tap-api-tads.herokuapp.com/validarToken", {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${localStorage.getItem("token")}`
           }
         })
         .then(function(response) {
-          console.log(response);
+          vm.$router.push("/bemVindo");
         })
         .catch(function(error) {
+          vm.usuarioInvalido = true;
           console.log(error);
         });
     },
