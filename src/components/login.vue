@@ -8,13 +8,30 @@
             <div class="input-group-prepend">
               <span class="input-group-text" id="inputGroup-sizing-default">Email</span>
             </div>
-            <input type="text" class="form-control" aria-label="Default" v-model="email" aria-describedby="inputGroup-sizing-default">
-             <div class="input-group-prepend">
+            <input
+              type="text"
+              class="form-control"
+              aria-label="Default"
+              v-model="email"
+              aria-describedby="inputGroup-sizing-default"
+            />
+            <div class="input-group-prepend">
               <span class="input-group-text" id="inputGroup-sizing-default">Senha</span>
             </div>
-            <input type="text" class="form-control" aria-label="Default"  v-model="senha" aria-describedby="inputGroup-sizing-default">
-            <button type="button" class="btn btn-success" @click="adiciona()"
-             aria-label="Default" aria-describedby="inputGroup-sizing-default">Login</button>
+            <input
+              type="text"
+              class="form-control"
+              aria-label="Default"
+              v-model="senha"
+              aria-describedby="inputGroup-sizing-default"
+            />
+            <button
+              type="button"
+              class="btn btn-success"
+              @click="adiciona()"
+              aria-label="Default"
+              aria-describedby="inputGroup-sizing-default"
+            >Login</button>
           </div>
         </div>
       </div>
@@ -23,39 +40,43 @@
 </template>
 
 <script>
-import axios from 'axios'
+/* eslint-disable */
+import axios from "axios";
 export default {
-  data () {
+  data() {
     return {
       email: undefined,
       senha: undefined
-    }
+    };
   },
   methods: {
-    adiciona () {
-      var vm = this
-      axios.post('https://tap-api-tads.herokuapp.com/gerartoken', {
-        email: vm.email,
-        senha: vm.senha
-      })
-        .then(function (response) {
-          if (response.status === 200) { localStorage.setItem('token', response.data) }
-          vm.mostraToken()
+    adiciona() {
+      var vm = this;
+      axios
+        .get("http://localhost:3000/validarToken", {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+          }
         })
-        .catch(function (error) {
-          console.log(error)
+        .then(function(response) {
+          console.log(response);
         })
+        .catch(function(error) {
+          console.log(error);
+        });
     },
-    mostraToken () {
-      console.log(localStorage.getItem('token'))
+    mostraToken() {
+      console.log(localStorage.getItem("token"));
     }
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
+h1,
+h2 {
   font-weight: normal;
 }
 ul {
