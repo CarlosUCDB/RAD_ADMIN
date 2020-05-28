@@ -32,7 +32,6 @@
 </template>
 
 <script>
-/* eslint-disable */
 import axios from "axios";
 export default {
   data() {
@@ -47,6 +46,7 @@ export default {
       axios
         .post(`https://tap-api-tads.herokuapp.com/buscarcurso/${vm.curso}`)
         .then(function(response) {
+          if (response.data.status === 200) vm.msg = "Cadastrado!";
           console.log(response);
         })
         .catch(function(error) {
